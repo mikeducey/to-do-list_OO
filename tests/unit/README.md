@@ -18,3 +18,9 @@ class SomeClassTest < Minitest::Test
   end
 end
 ```
+
+A list of assertions: http://www.mattsears.com/articles/2011/12/10/minitest-quick-reference/
+
+To run the tests, run `bundle exec rake`.
+
+Test files must be named like `something_test.rb`.

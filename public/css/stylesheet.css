@@ -1,0 +1,272 @@
+*{
+	margin:0px;
+	padding:5px;
+}
+html{
+	min-height:100%;
+}
+body{
+	margin:0;
+	padding:0;
+	height: 100%;
+	width:100%;
+}
+
+
+.header{
+	height:78px;
+	width:100%;
+	position:absolute;
+	top:0;
+	background-color: #3F5644;
+	font-family:Cursive;
+	font-size:24px;
+	color: #E7E8DC;
+	text-align:center;
+}
+
+.familyName{
+	padding-left:45px;
+}
+
+.left{
+	float:left;
+	position:fixed;
+	min-height:100vh;
+	width:200px;
+	padding-top: 20px;
+	top:0px;
+	background-color:white;
+}
+
+.navContent{
+	height:100%;
+	width:100%;
+	margin-left:20px;
+}
+
+.navLinks{
+	list-style: none;
+}
+
+.navigation{
+	margin-bottom:10px;
+}
+.navigation__api{
+	margin-bottom:2px;
+}
+.addTask{
+	text-align:center;
+	background-color: #555555;
+	color:white;
+	height:60px;
+	width:130px;
+	font-size:20px;
+	border-radius:8px;
+	margin-bottom:15px;
+}
+
+.addTask:hover{
+	background-color:#3F5644;
+	color:#E7E8DC;
+}
+
+.navLinks__link{
+	text-decoration: none;
+	font-family:Arial;
+	font-size:18px;
+	color:#3F5644;
+}
+
+.apiLinks{
+	position:absolute;
+	bottom:20px;
+}
+
+.navLinks__apiLinks{
+	text-decoration: none;
+	font-family:Arial;
+	font-size:12px;
+	color:#3F5644;
+}
+
+.mainContent{
+	width:auto;
+	margin-left:200px;
+	margin-top:78px;
+	min-height:100vh;
+	padding-bottom:200px;
+	background-image: url(/images/background.jpg);
+	background-position: right bottom;
+}
+
+.mainContent--json{
+	background-image: none;
+}
+
+.toDoBtn{
+	height:50px;
+	width:200px;
+	margin-top:30px;
+	margin-bottom:15px;
+	margin-left:40px;
+	border-radius:6px;
+	font-size: 16px;
+	font-family:Arial;
+}
+
+.completeBtn{
+	height:50px;
+	width:200px;
+	margin-top:30px;
+	margin-bottom:15px;
+	margin-left:40px;
+	border-radius:6px;
+	font-size: 16px;
+	font-family:Arial;
+}
+
+.task{
+	display:flex;
+	justify-content: space-between;
+	margin:3px 50px 3px 50px;
+	padding:5px;
+	border-radius:4px;
+	font-family:sans-serif;
+	background:rgba(255,255,255,0.7);
+}
+
+.completeTask{
+	display:flex;
+	justify-content: space-between;
+	margin:3px 50px 3px 50px;
+	padding:5px;
+	border-radius:4px;
+	font-family:sans-serif;
+	background:rgba(255,255,255,0.7);
+}
+
+.icons{
+	display:flex;
+}
+
+.taskList{
+	list-style: none;
+}
+
+.completeTaskList{
+	list-style: none;
+}
+
+.taskList__task{
+	margin-right:5px;
+	font-size:20px;
+}
+
+.addTaskModal{
+	background-color:white;
+	height:250px;
+	width: 400px;
+	text-align: center;
+	border-radius:4px;
+}
+
+.editTaskModal{
+	background-color:white;
+	height:360px;
+	width: 400px;
+	text-align: center;
+	border-radius:4px;
+}
+
+.ATmodalBackground{
+	position:fixed;
+	display:none;
+	top:0;
+	left:0;
+	min-height:100vh;
+	width:100%;
+	background: rgba(0, 0, 0, 0.8);
+	justify-content:center;
+	align-items:center;
+	z-index:100;
+}
+
+.ETmodalBackground{
+	position:fixed;
+	display:none;
+	top:0;
+	left:0;
+	min-height:100vh;
+	width:100%;
+	background: rgba(0, 0, 0, 0.8);
+	justify-content:center;
+	align-items:center;
+	z-index:100;
+}
+
+.editFamilyHeader {
+	text-decoration: underline;
+	font-size: 17px;
+	font:Arial;
+	margin-top:10px;
+}
+.editNamesList {
+	margin-top:10px;
+	font:Arial;
+}
+
+.addNamesList {
+	margin-top:10px;
+	font:Arial;
+}
+
+.editaddSubmitButton{
+	background-color:#4343FF;
+	color:white;
+	height:25px;
+	width:75px;
+	border-radius:6px;
+	margin-top:5px;
+	font-family:Arial;
+	font-size:14px;
+}
+
+.cancelButton{
+	margin-top:5px;
+	height:25px;
+	width:75px;
+	border-radius:6px;
+	font-family:Arial;
+	font-size:14px;
+}
+
+.ATcancelButton{
+	margin-top:5px;
+	height:25px;
+	width:75px;
+	border-radius:6px;
+	font-family:Arial;
+	font-size:14px;
+}
+
+.enterTask{
+	margin-top:30px;
+	height:25px;
+	width:200px;
+	font-size:14px;
+	background-color:#E7E7EA;
+
+}
+
+.delete-edit{
+	height:15px;
+	width:15px;
+	margin-right:5px;
+}
+
+.edit{
+	height:15px;
+	width:15px;
+	margin-right:5px;
+}

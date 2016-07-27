@@ -1,0 +1,28 @@
+c|Mary|Mop the basement|52679669
+c|Lisa|Vacuum the rug|34587544
+i|Bob|Change the AC filter|88008004
+i|Bob|Dust the book shelves|68249195
+i|Mary|Rake the leaves|95182081
+c|Mary|Feed the fish|3234981
+c|Lisa|Walk the hamster|89166161
+c|Joe|Trim the front hedges|68788894
+i|Lisa|Hoist the jib|82926181
+i|Mary|Nail the picture on the wall|66757276
+c|Joe|Mop the basement|373441
+i|Mary|Fluff a pillow|8855455
+i|Mary|Rake the leaves|95182081
+c|Mary|Feed the fish|3234981
+i|Joe|feed the lizard|42707047
+i|Joe|Run fast|54649421
+i|Joe|Wash the boat|65948591
+i|Mary|walk the dog|97665158
+i|Joe|Make your bed|29204884
+i|Joe|Change the AC filter|51490494
+i|Bob|Walk the hamster |13967643
+i|Bob|Dust the book shelves|84843456
+i|Mary|Nail the picture on the door|6244894
+i|Lisa|Walk the hamster|24492433
+i|Mary|Read the news|51267339
+i|Mary|Run the dryer|40466241
+c|Lisa|Trim the front hedges|87577618
+i|Lisa|Change the oil|84416663

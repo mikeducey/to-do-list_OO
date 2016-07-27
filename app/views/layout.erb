@@ -7,85 +7,47 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-
-    <title>Bollywood Bechdel</title>
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+    <script type="text/javascript" src="/global.js"></script>
+    
+    <title>To Do List</title>
   </head>
 
 <body>
 
-<nav>
-  <div class="container">
-    <ul>
-      <li>
-        <a href="/results/list">Bechdel Gallery</a>
-      </li>
+<div class="header"><h1 class="familyName"> The Johnsons</h1> </div>
 
-      <% if @current_user == nil %>
-      	<li class="active">
-          <a href="/users/new">Create account</a>
-        </li>
+<div class="left">
+    <div class="navContent">
+        <button class="addTask">Add a Task</button>
+    
+    
+        <ul class=navLinks>
+            <li class="navigation"><a class="navLinks__link" href="/">All Tasks</a></li>
+            <li class="navigation"><a class="navLinks__link" href="/filtered?user=Bob">Bob</a></li>
+            <li class="navigation"><a class="navLinks__link" href="/filtered?user=Mary">Mary</a></li>
+            <li class="navigation"><a class="navLinks__link" href="/filtered?user=Joe">Joe</a></li>
+            <li class="navigation"><a class="navLinks__link" href="/filtered?user=Lisa">Lisa</a></li>
+        </ul>
 
-        <li class="active">
-          <a href="/login`">Log in</a>
-        </li>
-      <% else %>
-       	<li class="active">
-       		<a href="/users/<%= @current_user.id %>/view">Profile</a>
-       	</li>
+        <div class="apiLinks">
+        <ul class=navLinks>
+            <li class="navigation__api"><a class="navLinks__apiLinks" href="/api/tasks">Task API Information</a></li>
+            <li class="navigation__api"><a class="navLinks__apiLinks" href="/api/individualfamilymember?person=Bob">Bob's API Information</a></li>
+            <li class="navigation__api"><a class="navLinks__apiLinks" href="/api/individualfamilymember?person=Mary">Mary's API Information</a></li>
+            <li class="navigation__api"><a class="navLinks__apiLinks" href="/api/individualfamilymember?person=Joe">Joe's API Information</a></li>
+            <li class="navigation__api"><a class="navLinks__apiLinks" href="/api/individualfamilymember?person=Lisa">Lisa's API Information</a></li>
+        </ul>
+        </div>
+    </div>
+</div>
 
-       	<li>
-       		<a href="/logout">Logout</a>
-       	</li>
-      <% end %>
-    </ul>
-  </div>
-</nav>
-
-<% if @error != nil %>
-  <div class="container">
-    <% @error.each do |error_message| %>
-      <div role="alert">
-        <button type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Error!</strong> <%= error_message %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
 
 <!-- The `yield` below is where the contents of a view file are put. -->
 <!-- Then the combined layout + view is sent back to the client. -->
 <%= yield %>
 
-<div>
-  <div class="container">
-    <p>
-      Find a Bollywood movie with <strong>strong</strong> female characters.
-    </p>
 
-    <form action="/movies/search" method="post">
-      <select name="search_category">
-        <option selected disabled>Choose category</option>
-        <option value= "title">Title</option>
-        <option value= "director">Director</option>
-      </select>
-
-      <input type="text" name="search" placeholder="search for a movie">
-
-      <div>
-        <label>
-          <input type="checkbox" name="passes_bechdel" value="1">
-          Passes Bechdel Test
-        </label>
-      </div>
-
-      <div>
-        <button>
-          Search
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
 
 </body>
 

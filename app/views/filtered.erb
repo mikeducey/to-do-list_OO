@@ -1,0 +1,233 @@
+
+<div class="mainContent">
+	
+	<h1> <%= @member %>'s Tasks</h1>
+
+	<button class="toDoBtn">To Do List</button>
+
+	<% if !@theseAreNotDone.nil? %>
+		<% @theseAreNotDone.each do |element| %>
+			<ul class="taskList">
+				<div class="task">
+					<li class = "taskList__task"><%= element[2] %></li>
+						<div class="icons">
+							<form method="post" action="/delete"> 
+								<input type="hidden" name="num" value ="<%= element[3]%>">
+								<span title="Delete Task"><input class ="delete-edit" type="image" src="/images/delete-icon.png" alt="D"></span>
+							</form>
+
+							<span title="Edit Task"><input type="image" src="/images/edit-icon.png" name="edit" class = "edit" id="<%=element[3]%>"/></span>
+			</div>
+
+			<div class="ETmodalBackground" id="modal<%=element[3]%>">
+				<div class="editTaskModal">
+
+					<form method="post" action="/edit/process" >
+							
+							<div>
+								<input class="enterTask" type="text" name="task" value="<%= element[2]  %>">
+							</div>
+							
+							<div>
+								<p class="editFamilyHeader">Family Member</p>
+							</div>
+							<div>
+								<div>
+								  <label>
+								   <input class="editNamesList" type="radio" name="person" value="Bob" <%= "checked" if element[1] == "Bob" %>>
+								    Bob
+								  </label>
+								</div>
+
+								<div>
+								  <label>
+								    <input class="editNamesList" type="radio" name="person" value="Mary" <%= "checked" if element[1] == "Mary" %>>
+								    Mary
+								  </label>
+								</div>
+
+								<div>
+								  <label>
+								    <input class="editNamesList" type="radio" name="person" value="Joe" <%= "checked" if element[1] == "Joe" %>>
+								    Joe
+								  </label>
+								</div>
+
+								<div>
+								  <label>
+								    <input class="editNamesList" type="radio" name="person" value="Lisa" <%= "checked" if element[1] == "Lisa" %>>
+								    Lisa
+								  </label>
+								</div>
+							</div>
+							<div>
+								<p class="editFamilyHeader">Status</p>
+							</div>
+							<div>
+								<div>
+								  <label>
+								    <input class="editNamesList" type="radio" name="status" value="i" <%= "checked" if element[0] == "i" %>>
+								    Incomplete
+								  </label>
+								</div>
+
+								<div>
+								  <label>
+								    <input class="editNamesList" type="radio" name="status" value="c" <%= "checked" if element[0] == "c" %>>
+								    Complete
+								  </label>
+								</div>
+							</div>
+
+							<input type="hidden" name="num" value="<%= element[3] %>">
+
+							<button  class="editaddSubmitButton" type="submit" value="Submit">Submit</button>
+					  		
+					</form>
+					<button class="cancelButton">Cancel</button>
+				</div>
+			</div>
+				</div>
+			</ul>
+		<% end %>
+	<% else %>
+		<p> There are no tasks! </p>
+	<% end %>
+
+
+
+
+	<button class="completeBtn">Completed Tasks</button>
+	<% if !@theseAreDone.nil? %>
+		<% @theseAreDone.each do |element| %>
+		
+		<ul class ="taskList">	
+			<div class="completeTask">
+				<li class = "taskList__task"><%= element[2] %></li>
+				<div class="icons">
+					<form method="post" action="/delete"> 
+						<input type="hidden" name="num" value ="<%= element[3]%>">
+						<span title="Delete Task"><input class ="delete-edit" type="image" src="/images/delete-icon.png" alt="D"></span>
+					</form>
+
+					<span title="Edit Task"><input type="image" src="/images/edit-icon.png" name="edit" class = "edit" id="<%=element[3]%>"/></span>
+				</div>
+				
+				<div class="ETmodalBackground" id="modal<%=element[3]%>">
+					<div class="editTaskModal">
+
+						<form method="post" action="/edit/process" >
+								
+								<div>
+									<input class="enterTask" type="text" name="task" value="<%= element[2]  %>">
+								</div>
+								
+								<div>
+									<p class="editFamilyHeader">Family Member</p>
+								</div>
+								<div>
+									<div>
+									  <label>
+									   <input class="editNamesList" type="radio" name="person" value="Bob" <%= "checked" if element[1] == "Bob" %>>
+									    Bob
+									  </label>
+									</div>
+
+									<div>
+									  <label>
+									    <input class="editNamesList" type="radio" name="person" value="Mary" <%= "checked" if element[1] == "Mary" %>>
+									    Mary
+									  </label>
+									</div>
+
+									<div>
+									  <label>
+									    <input class="editNamesList" type="radio" name="person" value="Joe" <%= "checked" if element[1] == "Joe" %>>
+									    Joe
+									  </label>
+									</div>
+
+									<div>
+									  <label>
+									    <input class="editNamesList" type="radio" name="person" value="Lisa" <%= "checked" if element[1] == "Lisa" %>>
+									    Lisa
+									  </label>
+									</div>
+								</div>
+								<div>
+									<p class="editFamilyHeader">Status</p>
+								</div>
+								<div>
+									<div>
+									  <label>
+									    <input class="editNamesList" type="radio" name="status" value="i" <%= "checked" if element[0] == "i" %>>
+									    Incomplete
+									  </label>
+									</div>
+
+									<div>
+									  <label>
+									    <input class="editNamesList" type="radio" name="status" value="c" <%= "checked" if element[0] == "c" %>>
+									    Complete
+									  </label>
+									</div>
+								</div>
+
+								<input type="hidden" name="num" value="<%= element[3] %>">
+
+								<button  class="editaddSubmitButton" type="submit" value="Submit">Submit</button>
+						  		
+						</form>
+						<button class="cancelButton">Cancel</button>
+					</div>
+				
+				</div>
+					
+				</div>
+			</ul>
+		<% end %>
+	<% else %>
+		<p> There are no tasks! </p>
+	<% end %>
+</div>
+
+<div class="ATmodalBackground">
+	<div class="addTaskModal">
+		<form method="post" action="/new/process" >
+			<div><input class="enterTask" type="text" name="task" placeholder="Task..."></div>
+
+			<div>
+			  <label>
+			   <input class="addNamesList" type="radio" name="person" value="Bob" checked>
+			    Bob
+			  </label>
+			</div>
+
+			<div>
+			  <label>
+			    <input class="addNamesList" type="radio" name="person" value="Mary">
+			    Mary
+			  </label>
+			</div>
+
+			<div>
+			  <label>
+			    <input class="addNamesList" type="radio" name="person" value="Joe">
+			    Joe
+			  </label>
+			</div>
+
+			<div>
+			  <label>
+			    <input class="addNamesList" type="radio" name="person" value="Lisa">
+			    Lisa
+			  </label>
+			</div>
+
+
+			<input class="editaddSubmitButton" type="submit">
+		</form>
+			<button class="ATcancelButton">Cancel</button>
+
+	</div>
+</div>
