@@ -6,3 +6,4 @@ coverage/index.html
 coverage/.resultset*
 .env
 public/uploads
+app/models/secret.rb

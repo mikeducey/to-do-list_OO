@@ -30,6 +30,10 @@ end
 
 require 'tilt/erb'
 
+DB = SQLite3::Database.new "tasks.db"
+DB.results_as_hash = true
+
+
 Dir[File.dirname(__FILE__) + '/app/models/*.rb'].each {|file| require file }
 
 Dir[File.dirname(__FILE__) + '/app/controllers/*.rb'].each {|file| require file }
