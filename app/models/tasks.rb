@@ -3,16 +3,18 @@ require "sqlite3"
 
 class Task
 
-	def initialize(name)
+	def initialize(name, task)
 		@name = name
+		@task = task
 	end
 
 	def get_name
 		@name
 	end
 
-	def new_task
+	def createNewTask
 		DB.execute("INSERT INTO tasks VALUES (\"#{@task}\", \"#{@name}\", 1)")
+		
 	end
 
 	def sort_by_completed_tasks
