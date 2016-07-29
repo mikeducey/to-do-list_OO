@@ -18,13 +18,12 @@
 
 			</div>
 
-			<div class="ETmodalBackground" id="modal<%=element[3]%>">
+			<div class="ETmodalBackground" id="modal<%=element["id"]%>">
 				<div class="editTaskModal">
 
 					<form method="post" action="/edit/process" >
 							
 								<input class="enterTask" type="text" name="task" value="<%= element["task"] %>">
-							
 							
 							<div>
 								<p class="editFamilyHeader">Family Member</p>
@@ -103,7 +102,7 @@
 					<input type="hidden" name="num" value ="<%= element["id"]%>">
 					<span title="Delete Task"><input class ="delete-edit" type="image" src="/images/delete-icon.png" alt="D"></span>
 				</form>
-				<span title="Edit Task"><input type="image" src="/images/edit-icon.png" name="edit" class = "edit" id="<%=element[3]%>"/></span>
+				<span title="Edit Task"><input type="image" src="/images/edit-icon.png" name="edit" class = "edit" id="<%=element["id"]%>"/></span>
 			</div>
 
 			<div class="ETmodalBackground" id="modal<%=element["id"]%>">
