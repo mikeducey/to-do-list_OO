@@ -30,7 +30,11 @@ end
 
 require 'tilt/erb'
 
-DB = SQLite3::Database.new "tasks.db"
+if MyApp.settings.environment == :development
+	DB = SQLite3::Database.new "tasks.db"
+elsif MyApp.settings.environment == :test
+	DB = SQLite3::Database.new "tasks_test.db"
+end
 DB.results_as_hash = true
 
 

@@ -7,6 +7,8 @@ MyApp.get "/" do
 end
 
 
+#I think i need to populate the ids for this!  Or something, somehow the edit function does
+# not work for the filtered erb.... !!!
 MyApp.get "/filtered" do
 
 	@theseAreNotDone = Task.sort_by_family_member_incomplete(params[:user])
@@ -32,9 +34,7 @@ end
 
 
 MyApp.post "/edit/process" do  
-	@ManipulateTask = Task.new(params[:num], params[:person], params[:task], params[:status])
-  	@removeOldTask = @ManipulateTask.deleteTask
-  	@addNewVersionofTask = @ManipulateTask.editTask
+  	addNewVersionofTask = Task.editTask(params[:num],params[:person], params[:task], params[:status])
   	redirect '/'
 end
 
