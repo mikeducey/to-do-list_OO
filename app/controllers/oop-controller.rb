@@ -1,7 +1,7 @@
 MyApp.get "/" do
 
-	@incompleteTasks = Task.sort_by_incomplete_tasks
-	@completedTasks = Task.sort_by_completed_tasks
+	@incompleteTasks = Task.incomplete_tasks
+	@completedTasks = Task.completed_tasks
 	erb :"home"
 
 end
@@ -11,8 +11,8 @@ end
 # not work for the filtered erb.... !!!
 MyApp.get "/filtered" do
 
-	@theseAreNotDone = Task.sort_by_family_member_incomplete(params[:user])
-	@theseAreDone = Task.sort_by_family_member_complete(params[:user])
+	@theseAreNotDone = Task.family_member_incomplete_tasks(params[:user])
+	@theseAreDone = Task.family_member_complete_tasks(params[:user])
 	@member = Task.print_name(params[:user])
 	erb :"filtered"
 end
@@ -23,18 +23,19 @@ end
 
 MyApp.post "/new/process" do
 
-	addTask = Task.addNewTask(params[:task], params[:person])
+	addTask = Task.save(params[:task], params[:person])
 	redirect '/'
 end
 
 MyApp.post "/edit" do
-	@selectTaskforEdit = Task.selectTask(params[:num])
+	@selectTaskforEdit = Task.whereID(params[:num])
 	erb :"edit"
 end
 
 
-MyApp.post "/edit/process" do  
-  	addNewVersionofTask = Task.editTask(params[:num],params[:person], params[:task], params[:status])
+MyApp.post "/edit/process" do
+	selectedTask = Task.whereID(params[:num])
+  	addNewVersionofTask = selectedTask.update_attributes(params[:num],params[:person], params[:task], params[:status])
   	redirect '/'
 end
 
