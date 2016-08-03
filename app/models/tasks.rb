@@ -5,13 +5,13 @@ class Task
 
 	# extend TaskORM
 
-	attr_reader :id, :name, :task, :status 
-	attr_writer :id, :name, :task, :status
+	attr_reader :id, :task, :name, :status 
+	attr_writer :id, :task, :name, :status 
 
-	def initialize(id=nil, name, task, status)
+	def initialize(id=nil, task, name, status)
 		@id = id
-		@name = name
 		@task = task
+		@name = name
 		@status = status
 	end
 
@@ -20,10 +20,11 @@ class Task
 	# Updates the @id with the id number of the last task added.
 	
 	def self.save(task, name)
-		newTask = DB.execute("INSERT INTO tasks (task, name, status) VALUES (\"#{task}\", #{name}, 2)")
+		default_status = 2
+		newTask = DB.execute("INSERT INTO tasks (task, name, status) VALUES (\"#{task}\", #{name}, #{default_status})")
 		@id = DB.last_insert_row_id
 
-		Task.new(@id, newTask["task"], newTask["name"], newTask["status"])
+		Task.new(@id, task, name, default_status)
 	end
 
 	# Selects a task from the database based on the id.
@@ -34,7 +35,7 @@ class Task
 		selectTask = DB.execute("SELECT * FROM tasks WHERE id == #{id}")
 		selectedTask = selectTask[0]
 
-		Task.new(selectedTask["id"], selectedTask["name"], selectedTask["task"], selectedTask["status"])
+		Task.new(selectedTask["id"], selectedTask["task"], selectedTask["name"], selectedTask["status"])
 	end
 
 	# Deletes a task from the database based on the id.
@@ -51,34 +52,34 @@ class Task
 	# by the selectTask function.
 
 	def update_attributes(id, name, task, status)
-		DB.execute("UPDATE tasks SET name=\"#{name}\", task=\"#{task}\", status=\"#{status}\" WHERE id=\"#{id}\"")
-		@name = name
+		DB.execute("UPDATE tasks SET task=\"#{task}\", name=\"#{name}\", status=\"#{status}\" WHERE id=\"#{id}\"")
 		@task = task
+		@name = name
 		@status = status
 	end
 
-	# Sorts all tasks in the database by status, in this case complete tasks.
-
-	def self.completed_tasks
-		completedTasks = DB.execute("SELECT * FROM tasks WHERE status == 1")
-	
-		Task.new(completedTasks["id"], completedTasks["name"], completedTasks["task"], completedTasks["status"])
+	# Sorts all tasks in the database by status.
+	def self.sort_by_status(status)
+		sorted_tasks = DB.execute("SELECT * FROM tasks WHERE status ==#{status}")
+		@status = status
 	end
 
-	# Sorts all tasks in the database by status, in this case incomplete tasks.
-	def self.incomplete_tasks
-		incompleteTasks = DB.execute("SELECT * FROM tasks WHERE status == 2")
+	# # Sorts all tasks in the database by status, in this case complete tasks.
+	# def self.completed_tasks
+	# 	DB.execute("SELECT * FROM tasks WHERE status == 1")
+	# end
 
-		Task.new(incompleteTasks["id"], incompleteTasks["name"], incompleteTasks["task"], incompleteTasks["status"])
-
-	end
+	# # Sorts all tasks in the database by status, in this case incomplete tasks.
+	# def self.incomplete_tasks
+	# 	DB.execute("SELECT * FROM tasks WHERE status == 2")
+	# end
 
 	# Sorts all tasks in the database by name, which is represented by an id number in the tasks rb.
 	#
 	# It also sorts by the status of the task, in this case, incomplete tasks.
 
 	def self.family_member_incomplete_tasks(name)
-		DB.execute("SELECT * FROM tasks WHERE name == \"#{name}\" and status == 2")
+		complete_tasks = DB.execute("SELECT * FROM tasks WHERE name == \"#{name}\" and status == 2")
 	end
 
 	# Sorts all tasks in the database by name, which is represented by an id number in the tasks rb.
