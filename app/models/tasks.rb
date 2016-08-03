@@ -20,24 +20,11 @@ class Task
 	# Updates the @id with the id number of the last task added.
 	
 	def self.save(task, name)
-		newTask = DB.execute("INSERT INTO tasks (task, name, status) VALUES (\"#{task}\", \"#{name}\", 2)")
+		newTask = DB.execute("INSERT INTO tasks (task, name, status) VALUES (\"#{task}\", #{name}, 2)")
 		@id = DB.last_insert_row_id
 
 		Task.new(@id, newTask["task"], newTask["name"], newTask["status"])
 	end
-
-	# AS OF NOW I DON'T BELIEVE def tasks is required.  Unneeded.
-
-	# This function should pull from a Task object and display the tasks.
-	#
-	# Ideally, it will just be called on an object like incompleteTasks.tasks and display all
-	# task input from the DB from the object incompleteTasks.
-
-	# def tasks(id)
-	# 	DB.execute("SELECT * FROM tasks WHERE id = #{id}")
-	# end
-
-	# then you can call mike.tasks to get back the tasks!  Use it with the objects built on those items.
 
 	# Selects a task from the database based on the id.
 	#
