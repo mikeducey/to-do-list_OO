@@ -3,7 +3,7 @@ require "sqlite3"
 
 class Task
 
-	# extend TaskORM
+	extend ClassMethods
 
 	attr_reader :id, :task, :name, :status 
 	attr_writer :id, :task, :name, :status 
@@ -25,25 +25,6 @@ class Task
 		@id = DB.last_insert_row_id
 
 		Task.new(@id, task, name, default_status)
-	end
-
-	# Selects a task from the database based on the id.
-	#
-	# This will be used to populate the data field when a task is to be edited.
-
-	def self.whereID(id)
-		selectTask = DB.execute("SELECT * FROM tasks WHERE id == #{id}")
-		selectedTask = selectTask[0]
-
-		Task.new(selectedTask["id"], selectedTask["task"], selectedTask["name"], selectedTask["status"])
-	end
-
-	# Deletes a task from the database based on the id.
-	#
-	# Nothing should be returned!
-
-	def self.deleteTask(id)
-		DB.execute("DELETE from tasks WHERE id == #{id}")
 	end
 
 	# Edits a task from the database based on the id.
@@ -85,26 +66,5 @@ class Task
 	end
 
 # This is the end for the class	Task.
-end
-
-
-class Name
-
-	attr_reader :id, :name
-	attr_writer :id, :name
-
-	def initialize(id=nil, name)
-		@id = id
-		@name = name
-	end
-
-	# Returns the name of the family member that is represented by the id number on the names table.
-	def self.print_name(name_id)
-		get_name = DB.execute("SELECT * FROM name WHERE id == \"#{name_id}\"")
-		selected_name = get_name[0]
-
-		Name.new(name_id, selected_name["name"])
-	end
-
 end
 
