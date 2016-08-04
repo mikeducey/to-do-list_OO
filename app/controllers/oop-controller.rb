@@ -1,7 +1,7 @@
 MyApp.get "/" do
 
-	@incompleteTasks = Task.incomplete_tasks
-	@completedTasks = Task.completed_tasks
+	@incompleteTasks = Task.sort_by_status(2)
+	@completedTasks = Task.sort_by_status(1)
 	erb :"home"
 
 end
@@ -11,9 +11,9 @@ end
 # not work for the filtered erb.... !!!
 MyApp.get "/filtered" do
 
-	@theseAreNotDone = Task.family_member_incomplete_tasks(params[:user])
-	@theseAreDone = Task.family_member_complete_tasks(params[:user])
-	@member = Task.print_name(params[:user])
+	@theseAreNotDone = Task.family_member_sorted_by_status(params[:user], 2)
+	@theseAreDone = Task.family_member_sorted_by_status(params[:user], 1)
+	@member = Name.print_name(params[:user])
 	erb :"filtered"
 end
 

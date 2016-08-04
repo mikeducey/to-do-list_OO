@@ -1,31 +1,29 @@
 
 <div class="mainContent">
-	<% @member.each do |familyName| %>
-	<h1> <%= familyName["name"] %>'s Tasks</h1>
-	<% end %>
+	<h1> <%= @member.name %>'s Tasks</h1>
 	<button class="toDoBtn">To Do List</button>
 
 	<% if !@theseAreNotDone.nil? %>
 		<% @theseAreNotDone.each do |element| %>
 			<ul class="taskList">
 				<div class="task">
-					<li class = "taskList__task"><%= element["task"] %></li>
+					<li class = "taskList__task"><%= element.task %></li>
 						<div class="icons">
 							<form method="post" action="/delete"> 
-								<input type="hidden" name="num" value ="<%= element["id"]%>">
+								<input type="hidden" name="num" value ="<%= element.id %>">
 								<span title="Delete Task"><input class ="delete-edit" type="image" src="/images/delete-icon.png" alt="D"></span>
 							</form>
 
-							<span title="Edit Task"><input type="image" src="/images/edit-icon.png" name="edit" class = "edit" id="<%=element["id"]%>"/></span>
+							<span title="Edit Task"><input type="image" src="/images/edit-icon.png" name="edit" class = "edit" id="<%=element.id %>"/></span>
 			</div>
 
-			<div class="ETmodalBackground" id="modal<%=element["id"]%>">
+			<div class="ETmodalBackground" id="modal<%=element.id %>">
 				<div class="editTaskModal">
 
 					<form method="post" action="/edit/process" >
 							
 							<div>
-								<input class="enterTask" type="text" name="task" value="<%= element["task"]  %>">
+								<input class="enterTask" type="text" name="task" value="<%= element.task  %>">
 							</div>
 							
 							<div>
@@ -34,28 +32,28 @@
 							<div>
 								<div>
 								  <label>
-								   <input class="editNamesList" type="radio" name="person" value=1 <%= "checked" if element["name"] == 1 %>>
+								   <input class="editNamesList" type="radio" name="person" value=1 <%= "checked" if element.name == 1 %>>
 								    Bob
 								  </label>
 								</div>
 
 								<div>
 								  <label>
-								    <input class="editNamesList" type="radio" name="person" value=2 <%= "checked" if element["name"] == 2 %>>
+								    <input class="editNamesList" type="radio" name="person" value=2 <%= "checked" if element.name == 2 %>>
 								    Mary
 								  </label>
 								</div>
 
 								<div>
 								  <label>
-								    <input class="editNamesList" type="radio" name="person" value=3 <%= "checked" if element["name"] == 3 %>>
+								    <input class="editNamesList" type="radio" name="person" value=3 <%= "checked" if element.name == 3 %>>
 								    Joe
 								  </label>
 								</div>
 
 								<div>
 								  <label>
-								    <input class="editNamesList" type="radio" name="person" value=4 <%= "checked" if element["name"] == 4 %>>
+								    <input class="editNamesList" type="radio" name="person" value=4 <%= "checked" if element.name == 4 %>>
 								    Lisa
 								  </label>
 								</div>
@@ -66,20 +64,20 @@
 							<div>
 								<div>
 								  <label>
-								    <input class="editNamesList" type="radio" name="status" value= 2<%= "checked" if element["status"] == 2 %>>
+								    <input class="editNamesList" type="radio" name="status" value= 2<%= "checked" if element.status == 2 %>>
 								    Incomplete
 								  </label>
 								</div>
 
 								<div>
 								  <label>
-								    <input class="editNamesList" type="radio" name="status" value= 1 <%= "checked" if element["status"] == 1 %>>
+								    <input class="editNamesList" type="radio" name="status" value= 1 <%= "checked" if element.status == 1 %>>
 								    Complete
 								  </label>
 								</div>
 							</div>
 
-							<input type="hidden" name="num" value="<%= element["id"] %>">
+							<input type="hidden" name="num" value="<%= element.id %>">
 
 							<button  class="editaddSubmitButton" type="submit" value="Submit">Submit</button>
 					  		
@@ -103,23 +101,23 @@
 		
 		<ul class ="taskList">	
 			<div class="completeTask">
-				<li class = "taskList__task"><%= element["task"] %></li>
+				<li class = "taskList__task"><%= element.task %></li>
 				<div class="icons">
 					<form method="post" action="/delete"> 
-						<input type="hidden" name="num" value ="<%= element["id"]%>">
+						<input type="hidden" name="num" value ="<%= element.id %>">
 						<span title="Delete Task"><input class ="delete-edit" type="image" src="/images/delete-icon.png" alt="D"></span>
 					</form>
 
-					<span title="Edit Task"><input type="image" src="/images/edit-icon.png" name="edit" class = "edit" id="<%=element["id"]%>"/></span>
+					<span title="Edit Task"><input type="image" src="/images/edit-icon.png" name="edit" class = "edit" id="<%=element.id%>"/></span>
 				</div>
 				
-				<div class="ETmodalBackground" id="modal<%=element["id"]%>">
+				<div class="ETmodalBackground" id="modal<%=element.id%>">
 					<div class="editTaskModal">
 
 						<form method="post" action="/edit/process" >
 								
 								<div>
-									<input class="enterTask" type="text" name="task" value="<%= element["task"]  %>">
+									<input class="enterTask" type="text" name="task" value="<%= element.task  %>">
 								</div>
 								
 								<div>
@@ -128,28 +126,28 @@
 								<div>
 									<div>
 									  <label>
-									   <input class="editNamesList" type="radio" name="person" value=1 <%= "checked" if element["name"] == 1 %>>
+									   <input class="editNamesList" type="radio" name="person" value=1 <%= "checked" if element.name == 1 %>>
 									    Bob
 									  </label>
 									</div>
 
 									<div>
 									  <label>
-									    <input class="editNamesList" type="radio" name="person" value=2 <%= "checked" if element["name"] == 2 %>>
+									    <input class="editNamesList" type="radio" name="person" value=2 <%= "checked" if element.name == 2 %>>
 									    Mary
 									  </label>
 									</div>
 
 									<div>
 									  <label>
-									    <input class="editNamesList" type="radio" name="person" value=3 <%= "checked" if element["name"] == 3 %>>
+									    <input class="editNamesList" type="radio" name="person" value=3 <%= "checked" if element.name == 3 %>>
 									    Joe
 									  </label>
 									</div>
 
 									<div>
 									  <label>
-									    <input class="editNamesList" type="radio" name="person" value=4 <%= "checked" if element["name"] == 4 %>>
+									    <input class="editNamesList" type="radio" name="person" value=4 <%= "checked" if element.name == 4 %>>
 									    Lisa
 									  </label>
 									</div>
@@ -160,20 +158,20 @@
 								<div>
 									<div>
 									  <label>
-									    <input class="editNamesList" type="radio" name="status" value=2 <%= "checked" if element["status"] == 2 %>>
+									    <input class="editNamesList" type="radio" name="status" value=2 <%= "checked" if element.status == 2 %>>
 									    Incomplete
 									  </label>
 									</div>
 
 									<div>
 									  <label>
-									    <input class="editNamesList" type="radio" name="status" value=1 <%= "checked" if element["status"] == 1 %>>
+									    <input class="editNamesList" type="radio" name="status" value=1 <%= "checked" if element.status == 1 %>>
 									    Complete
 									  </label>
 									</div>
 								</div>
 
-								<input type="hidden" name="num" value="<%= element["id"] %>">
+								<input type="hidden" name="num" value="<%= element.id %>">
 
 								<button  class="editaddSubmitButton" type="submit" value="Submit">Submit</button>
 						  		

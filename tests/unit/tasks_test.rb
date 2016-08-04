@@ -6,6 +6,7 @@ class ORMTest < Minitest::Test
 	def setup
 		super
 		DB.execute("DELETE FROM tasks")
+		DB.execute("DELETE FROM name")
 	end
 
 	def test_whereID
@@ -56,15 +57,38 @@ class ORMTest < Minitest::Test
 		@status = 1
 		DB.execute("INSERT into tasks (name, task, status) VALUES (1, \"Make Red Paint\", 1), (2, \"Make Blue Paint\", 2)")
 		complete_tasks = Task.sort_by_status(@status)
-		
 
-		how_many_tasks = DB.execute("SELECT * FROM tasks")
-		check_for_task_info = how_many_tasks[0]
-		binding.pry
+		how_many_tasks = complete_tasks.count
+		check_for_task_info = complete_tasks[0]
 
-		assert_equal(complete_tasks, 1)
+		assert_equal(how_many_tasks, 1)
 		assert_kind_of(Object, complete_tasks)
-		assert_equal(check_for_task_info["status"], 1)
+		assert_equal(check_for_task_info.status, 1)
 	end
+
+	def test_family_member_sorted_by_status
+		@name = 2
+		@status = 2
+		DB.execute("INSERT into tasks (name, task, status) VALUES (1, \"Make Red Paint\", 1), (2, \"Make Blue Paint\", 2)")
+		fam_mem_sorted_incomplete = Task.family_member_sorted_by_status(@name, @status)
+
+		how_many_tasks = fam_mem_sorted_incomplete.count
+		check_for_task_info = fam_mem_sorted_incomplete[0]
+
+		assert_equal(how_many_tasks, 1)
+		assert_kind_of(Object, fam_mem_sorted_incomplete)
+		assert_equal(check_for_task_info.status, 2)
+		assert_equal(check_for_task_info.name, 2)
+	end
+
+	def test_print_name
+		@name = 4
+		DB.execute("INSERT INTO name (name) VALUES (\"Bob\"), (\"Mary\"), (\"Joe\"), (\"Lisa\")")
+		family_name = Name.print_name(@name)
+
+		assert_equal(family_name.name, "Lisa")
+		assert_kind_of(Object, family_name)
+	end
+
 
 end

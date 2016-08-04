@@ -60,41 +60,51 @@ class Task
 
 	# Sorts all tasks in the database by status.
 	def self.sort_by_status(status)
-		sorted_tasks = DB.execute("SELECT * FROM tasks WHERE status ==#{status}")
+		array_by_status = []
 		@status = status
+		sorted_tasks = DB.execute("SELECT * FROM tasks WHERE status ==#{status}")
+		sorted_tasks.each do |x|
+			array_by_status << Task.new(x["id"], x["task"], x["name"], x[@status])
+		end
+
+		return array_by_status
+
 	end
 
-	# # Sorts all tasks in the database by status, in this case complete tasks.
-	# def self.completed_tasks
-	# 	DB.execute("SELECT * FROM tasks WHERE status == 1")
-	# end
+	#Sorts all tasks in the database by family member and status.
+	def self.family_member_sorted_by_status(name, status)
+		famMem_by_status = []
 
-	# # Sorts all tasks in the database by status, in this case incomplete tasks.
-	# def self.incomplete_tasks
-	# 	DB.execute("SELECT * FROM tasks WHERE status == 2")
-	# end
+		famMem_tasks = DB.execute("SELECT * FROM tasks WHERE name == #{name} and status == #{status}")
+		famMem_tasks.each do |x|
+			famMem_by_status << Task.new(x["id"], x["task"], x["name"], x["status"])
+		end
 
-	# Sorts all tasks in the database by name, which is represented by an id number in the tasks rb.
-	#
-	# It also sorts by the status of the task, in this case, incomplete tasks.
+		return famMem_by_status
 
-	def self.family_member_incomplete_tasks(name)
-		complete_tasks = DB.execute("SELECT * FROM tasks WHERE name == \"#{name}\" and status == 2")
-	end
-
-	# Sorts all tasks in the database by name, which is represented by an id number in the tasks rb.
-	#
-	# It also sorts by the status of the task, in this case, complete tasks.
-
-	def self.family_member_complete_tasks(name)
-		DB.execute("SELECT * FROM tasks WHERE name == \"#{name}\" and status == 1")
-	end
-
-	# Returns the name of the family member that is represented by the id number on the names table.
-	def self.print_name(name)
-		DB.execute("SELECT name FROM name WHERE id == \"#{name}\"")
 	end
 
 # This is the end for the class	Task.
+end
+
+
+class Name
+
+	attr_reader :id, :name
+	attr_writer :id, :name
+
+	def initialize(id=nil, name)
+		@id = id
+		@name = name
+	end
+
+	# Returns the name of the family member that is represented by the id number on the names table.
+	def self.print_name(name_id)
+		get_name = DB.execute("SELECT * FROM name WHERE id == \"#{name_id}\"")
+		selected_name = get_name[0]
+
+		Name.new(name_id, selected_name["name"])
+	end
+
 end
 
