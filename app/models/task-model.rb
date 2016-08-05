@@ -45,9 +45,10 @@ class Task
 		@status = status
 		sorted_tasks = DB.execute("SELECT * FROM tasks WHERE status ==#{status}")
 		sorted_tasks.each do |x|
-			array_by_status << Task.new(x["id"], x["task"], x["name"], x[@status])
-		end
+			array_by_status << Task.new(x["id"], x["task"], x["name"], x["status"])
 
+		end
+		binding.pry
 		return array_by_status
 
 	end

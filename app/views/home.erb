@@ -17,7 +17,6 @@
 				<span title="Edit Task"><input type="image" src="/images/edit-icon.png" name="edit" class = "edit" id="<%=element.id%>"/></span>
 
 			</div>
-			<!-- Edit Section -->
 			<div class="ETmodalBackground" id="modal<%=element.id%>">
 				<div class="editTaskModal">
 
@@ -120,7 +119,7 @@
 							<div>
 								<div>
 								  <label>
-								   <input class="editNamesList" type="radio" name="person" value=1<%= "checked" if element.name == 1 %>>
+								   <input class="editNamesList" type="radio" name="person" value=1 <%= "checked" if element.name == 1 %>>
 								    Bob
 								  </label>
 								</div>

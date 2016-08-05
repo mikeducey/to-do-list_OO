@@ -27,10 +27,10 @@ MyApp.post "/new/process" do
 	redirect '/'
 end
 
-MyApp.post "/edit" do
-	@selectTaskforEdit = Task.find("tasks", params[:num])
-	erb :"edit"
-end
+# MyApp.post "/edit" do
+# 	@selectTaskforEdit = Task.find("tasks", params[:num])
+# 	erb :"edit"
+# end
 
 
 MyApp.post "/edit/process" do
@@ -42,6 +42,6 @@ end
 
 
 MyApp.post '/delete' do
-	@deleteTaskByID = Task.delete(params[:num])
+	@deleteTaskByID = Task.delete("tasks", params[:num])
 	redirect '/'
 end
