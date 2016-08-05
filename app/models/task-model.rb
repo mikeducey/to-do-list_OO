@@ -31,6 +31,9 @@ class Task
 	#
 	# This function takes in data that is populated in the edit box that is supplied
 	# by the selectTask function.
+	# 
+	# I think this function needs to stay in this class and not the module, as it provides info to only the task 
+	# table, and no other tables (like the name or status table) have the same number of columns or column info.
 
 	def update_attributes(id, name, task, status)
 		DB.execute("UPDATE tasks SET task=\"#{task}\", name=\"#{name}\", status=\"#{status}\" WHERE id=\"#{id}\"")
@@ -46,9 +49,8 @@ class Task
 		sorted_tasks = DB.execute("SELECT * FROM tasks WHERE status ==#{status}")
 		sorted_tasks.each do |x|
 			array_by_status << Task.new(x["id"], x["task"], x["name"], x["status"])
-
 		end
-		binding.pry
+
 		return array_by_status
 
 	end
@@ -56,7 +58,6 @@ class Task
 	#Sorts all tasks in the database by family member and status.
 	def self.family_member_sorted_by_status(name, status)
 		famMem_by_status = []
-
 		famMem_tasks = DB.execute("SELECT * FROM tasks WHERE name == #{name} and status == #{status}")
 		famMem_tasks.each do |x|
 			famMem_by_status << Task.new(x["id"], x["task"], x["name"], x["status"])
@@ -66,6 +67,5 @@ class Task
 
 	end
 
-# This is the end for the class	Task.
 end
 

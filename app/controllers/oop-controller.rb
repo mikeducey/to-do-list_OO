@@ -6,9 +6,6 @@ MyApp.get "/" do
 
 end
 
-
-#I think i need to populate the ids for this!  Or something, somehow the edit function does
-# not work for the filtered erb.... !!!
 MyApp.get "/filtered" do
 
 	@theseAreNotDone = Task.family_member_sorted_by_status(params[:user], 2)
@@ -17,20 +14,11 @@ MyApp.get "/filtered" do
 	erb :"filtered"
 end
 
-MyApp.get "/new" do
-	erb :"new"
-end
-
 MyApp.post "/new/process" do
 
 	addTask = Task.save(params[:task], params[:person])
 	redirect '/'
 end
-
-# MyApp.post "/edit" do
-# 	@selectTaskforEdit = Task.find("tasks", params[:num])
-# 	erb :"edit"
-# end
 
 
 MyApp.post "/edit/process" do
